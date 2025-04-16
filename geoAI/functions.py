@@ -49,3 +49,22 @@ def midpoint_and_perpendicular(line):
     # midpoint_gdf.plot(ax=ax, color='black', markersize=50)
 
     return midpoint_gdf, perp_gdf 
+
+
+def closest_point2line(point, curves):
+    # 1. Find the closest curves
+    closest_line = curves.loc[curves.distance(point).idxmin()]
+    closest_geom = closest_line.geometry
+
+    # 2. Get nearest point *on* the curves to Exeter
+    nearest_on_line, _ = nearest_points(closest_geom, point)
+
+    # 3. Create direct connecting LineString
+    direct_line = LineString([point, nearest_on_line])
+
+    # 4. Wrap into GeoDataFrames for plotting
+    closest_line_gdf = gpd.GeoDataFrame(geometry=[closest_geom], index = ['closest'], crs=curves.crs)
+    # exeter_gdf = gpd.GeoDataFrame(geometry=[point], crs=curves.crs)
+    direct_line_gdf = gpd.GeoDataFrame(geometry=[direct_line], index = ['direct'], crs=curves.crs)
+
+    return pd.concat([closest_line_gdf, direct_line_gdf], axis = 0)
