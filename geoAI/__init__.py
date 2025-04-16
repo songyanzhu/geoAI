@@ -1,3 +1,4 @@
+import os
 from . import functions as gfuncs
 
 __all__ = ["gfuncs", "test_path"]
