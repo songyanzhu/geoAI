@@ -1,7 +1,7 @@
 from . import functions as gfuncs
 
-__all__ = ["gfuncs", "a"]
+__all__ = ["gfuncs", "test_path"]
 
 _module_path = os.path.dirname(__file__)
 
-a = _module_path
+test_path = _module_path
