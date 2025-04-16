@@ -16,3 +16,6 @@ https://www.data.gov.uk/dataset/e214d043-66a5-4639-90a2-82aa30e71115/national-pa
 
 GB greenspace:
 https://www.data.gov.uk/dataset/4c1fe120-a920-4f6d-bc41-8fd4586bd662/os-open-greenspace1
+
+UK Universities locations:
+https://datashare.ed.ac.uk/handle/10283/2454?show=full
