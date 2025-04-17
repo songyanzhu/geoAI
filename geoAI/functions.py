@@ -69,3 +69,45 @@ def closest_point2line(point, curves):
     direct_line_gdf = gpd.GeoDataFrame(geometry=[direct_line], index = ['direct'], crs=curves.crs)
 
     return pd.concat([closest_line_gdf, direct_line_gdf], axis = 0)
+
+
+
+from scitbx.meteo import saturation_vapor_pressure, specific_humidity2vapor_pressure
+from scitbx.stutils import *
+
+def load_era5(p_ERA5):
+    era5 = load_tif(p_ERA5, band_names = [
+        'dewpoint_temperature_2m', 'temperature_2m', 'soil_temperature_level_1', 'snow_cover',
+        'volumetric_soil_water_layer_1', 'forecast_albedo', 'surface_latent_heat_flux_sum', 'surface_sensible_heat_flux_sum',
+        'surface_solar_radiation_downwards_sum', 'surface_thermal_radiation_downwards_sum',
+        'surface_net_solar_radiation_sum', 'surface_net_thermal_radiation_sum',
+        'evaporation_from_the_top_of_canopy_sum', 'surface_pressure', 'total_precipitation_sum',
+        'temperature_2m_min', 'temperature_2m_max', 'u_component_of_wind_10m', 'v_component_of_wind_10m',
+    ])
+    era5 = era5.where(era5 != 0)
+    data_vars = era5.data_vars
+    for v in ['dewpoint_temperature_2m', 'temperature_2m', 'soil_temperature_level_1', 'temperature_2m_min', 'temperature_2m_max']:
+        if v in data_vars:
+            era5[v] -= 273.15
+    for v in [
+        'surface_latent_heat_flux_sum', 'surface_sensible_heat_flux_sum', 'surface_solar_radiation_downwards_sum',
+        'surface_thermal_radiation_downwards_sum', 'surface_net_solar_radiation_sum', 'surface_net_thermal_radiation_sum'
+        ]:
+        if v in data_vars:
+            era5[v] /= 86400
+
+    if 'surface_pressure' in data_vars:
+        era5['surface_pressure'] /= 100
+
+    era5['VPD'] = saturation_vapor_pressure(era5['temperature_2m']) - saturation_vapor_pressure(era5['dewpoint_temperature_2m'])
+    if ('surface_net_solar_radiation_sum' in data_vars) and ('surface_net_thermal_radiation_sum' in data_vars):
+        era5['surface_net_radiation_sum'] = era5['surface_net_solar_radiation_sum'] + era5['surface_net_thermal_radiation_sum']
+        era5 = era5.drop_vars(['surface_net_solar_radiation_sum', 'surface_net_thermal_radiation_sum'])
+    era5 = era5.drop_vars('dewpoint_temperature_2m')
+    # era5 = era5.drop_vars('spatial_ref')
+    era5 = era5.drop_vars([
+        'forecast_albedo', 'surface_latent_heat_flux_sum', 'surface_sensible_heat_flux_sum',
+        'evaporation_from_the_top_of_canopy_sum', 'temperature_2m_min', 'temperature_2m_max',
+        'u_component_of_wind_10m', 'v_component_of_wind_10m', 'snow_cover'
+    ])
+    return era5
