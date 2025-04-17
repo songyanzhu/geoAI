@@ -1,6 +1,6 @@
 # 🌍 GeoAI: Machine Learning for Geospatial Data Analysis
 
-<img src="[https://github.com/soonyenju/geoAI/blob/main/resources/logo.png](https://github.com/soonyenju/geoAI/blob/main/geoAI/resources/logo.png)" width="400"/>
+<img src="https://github.com/soonyenju/geoAI/blob/main/geoAI/resources/logo.png" width="400"/>
 
 
 
