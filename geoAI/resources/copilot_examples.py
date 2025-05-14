@@ -1,11 +1,15 @@
-# Example of a for loop
-numbers = [1, 2, 3, 4, 5]
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 
-for number in numbers:
-    print(f"The current number is: {number}")
 
-# Example of a while loop
-count = 0
-while count < 5:
-    print(f"Count is: {count}")
-    count += 1 
+a = np.arange(1, 10)
+b = np.arange(10, 20)
+c = np.add(a, b)
+print("a:", a)
+print("b:", b)
+print("c:", c)
