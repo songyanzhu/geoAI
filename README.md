@@ -1,4 +1,4 @@
-# 🌍 Module Resources – School of Geography and Environmental Science (GGES), University of Southampton
+# 🌍 Geospatial AI Module Resources – School of Geography and Environmental Science (GGES), University of Southampton
 
 Includes modules I contribute to:
 - Programming for Geospatial Data Science Machine Learning for Geospatial Data Analysis | GGES6030 (delivered by [Dr Songyan Zhu](https://www.southampton.ac.uk/people/665c6d/doctor-songyan-zhu#research) and [Prof Felix Eigenbrod](https://www.southampton.ac.uk/people/5x7txb/professor-felix-eigenbrod))
