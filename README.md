@@ -4,7 +4,7 @@ Includes modules I contribute to:
 - Programming for Geospatial Data Science Machine Learning for Geospatial Data Analysis | GGES6030 (delivered by [Dr Songyan Zhu](https://www.southampton.ac.uk/people/665c6d/doctor-songyan-zhu#research) and [Prof Felix Eigenbrod](https://www.southampton.ac.uk/people/5x7txb/professor-felix-eigenbrod))
 - Machine Learning for Geospatial Data Science | GGES6031 (led by [Dr Songyan Zhu](https://www.southampton.ac.uk/people/665c6d/doctor-songyan-zhu#research))
 
-<img src="https://github.com/soonyenju/geoAI/blob/main/geoAI/resources/logo.png" width="400"/>
+<img src="https://github.com/songyanzhu/geoAI/blob/main/geoAI/resources/logo.png" width="400"/>
 
 
 
